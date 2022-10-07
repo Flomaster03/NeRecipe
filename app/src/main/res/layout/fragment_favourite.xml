@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".ui.FavouriteFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listFavourite"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/single_recipe" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/emptyFavouriteImage"
+        android:layout_width="402dp"
+        android:layout_height="569dp"
+        android:src="@drawable/food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textFavourite"
+        android:id="@+id/emptyFavouriteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Favourite"
-        android:textSize="64sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="664dp"
-        tools:ignore="MissingConstraints" />
+        android:text="@string/empty_text_favourite"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/emptyFavouriteImage"
+        app:layout_constraintStart_toStartOf="@id/emptyFavouriteImage"
+        app:layout_constraintTop_toBottomOf="@id/emptyFavouriteImage" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/emptyFavouriteGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="emptyFavouriteImage, emptyFavouriteText"
+        tools:visibility="visible" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
