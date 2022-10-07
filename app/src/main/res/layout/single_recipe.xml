@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/title_hint"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/menuOptions"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/authorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/author_name_hint"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintEnd_toStartOf="@id/menuOptions"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:id="@+id/categoryRecipe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/category_recipe_hint"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/authorName"
+        app:layout_constraintEnd_toStartOf="@id/menuOptions"
+        app:layout_constraintTop_toBottomOf="@id/authorName" />
+
+    <TextView
+        android:id="@+id/textRecipe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/text_recipe_hint"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/categoryRecipe"
+        app:layout_constraintEnd_toStartOf="@id/menuOptions"
+        app:layout_constraintTop_toBottomOf="@id/categoryRecipe"
+        android:focusable="true" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/menu_options_description"
+        app:icon="@drawable/ic_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.AppTheme.MenuButton"
+
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:checkable="true"
+        app:icon="@drawable/ic_is_not_favourites"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/menuOptions"
+        android:contentDescription="@string/button_favourite_description"
+        style="@style/Widget.AppTheme.StarButton"
+        android:focusable="true" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textRecipe" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

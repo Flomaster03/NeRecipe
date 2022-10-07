@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.139" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_add_recipe.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_is_favourites.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_is_not_favourites.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_menu.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_ok_save.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/drawable/ic_search.xml" value="0.2075" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/fragment_create.xml" value="0.20854700854700856" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/fragment_favourite.xml" value="0.190625" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/fragment_feed.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/fragment_filter.xml" value="0.18984375" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/fragment_view_single.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/layout/single_recipe.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/menu/bottom_navigation_bar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/redor/AndroidStudioProjects/Recipes/app/src/main/res/menu/options_menu.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

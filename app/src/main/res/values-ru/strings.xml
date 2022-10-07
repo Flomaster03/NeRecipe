@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Рецепты</string>
+    <string name="all_recipes">Все рецепты</string>
+    <string name="favourites">Избранное</string>
+    <string name="filter">Фильтр</string>
+    <string name="european_type">Европейская</string>
+    <string name="asian_type">Азиатская</string>
+    <string name="panasian_type">Паназиатская</string>
+    <string name="eastern_type">Восточная</string>
+    <string name="american_type">Американская</string>
+    <string name="russian_type">Русская</string>
+    <string name="mediterranean_type">Средиземноморская</string>
+    <string name="title_hint">Название рецепта</string>
+    <string name="author_name_hint">Автор рецепта</string>
+    <string name="text_recipe_hint">Текст рецепта</string>
+    <string name="button_save_description">Сохранить</string>
+    <string name="category_recipe_hint">Категория</string>
+    <string name="menu_options_description">Меню</string>
+    <string name="button_favourite_description">Избранное</string>
+    <string name="button_add_recipe_description">Добавить рецепт</string>
+    <string name="button_apply_text">Применить</string>
+    <string name="empty_text_favourite">Здесь пока ничего нет!</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="search">Поиск</string>
+    <string name="button_clear_filter">Очистить фильтр</string>
+</resources>

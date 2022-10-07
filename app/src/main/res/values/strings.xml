@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Recipes</string>
+    <string name="all_recipes">All recipes</string>
+    <string name="favourites">Favourites</string>
+    <string name="filter">Filter</string>
+    <string name="european_type">European</string>
+    <string name="asian_type">Asian</string>
+    <string name="panasian_type">Panasian</string>
+    <string name="eastern_type">Eastern</string>
+    <string name="american_type">American</string>
+    <string name="russian_type">Russian</string>
+    <string name="mediterranean_type">Mediterranean</string>
+    <string name="title_hint">Name of the recipe</string>
+    <string name="author_name_hint">Author name</string>
+    <string name="text_recipe_hint">Text of the recipe</string>
+    <string name="button_save_description">Save</string>
+    <string name="category_recipe_hint">Category</string>
+    <string name="menu_options_description">Menu</string>
+    <string name="button_favourite_description">Favorite</string>
+    <string name="button_add_recipe_description">Add recipe</string>
+    <string name="button_apply_text">Apply</string>
+    <string name="empty_text_favourite">Theres nothing here yet!</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
+    <string name="search">Search</string>
+    <string name="button_clear_filter">ClearFilter</string>
+</resources>
