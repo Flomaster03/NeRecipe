@@ -1,4 +1,4 @@
-package ru.netology.recipes.ui.ui
+package ru.netology.recipes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

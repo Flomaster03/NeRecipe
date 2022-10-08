@@ -5,7 +5,7 @@
     app:startDestination="@id/feedFragment">
     <fragment
         android:id="@+id/feedFragment"
-        android:name="ru.netology.recipes.ui.ui.FeedFragment"
+        android:name="ru.netology.recipes.ui.FeedFragment"
         android:label="FeedFragment" >
         <action
             android:id="@+id/action_feedFragment_to_filterFragment"
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="ru.netology.recipes.ui.ui.FavouriteFragment"
+        android:name="ru.netology.recipes.ui.FavouriteFragment"
         android:label="FavouriteFragment">
         <argument
             android:name="ShowAppBar"
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/filterFragment"
-        android:name="ru.netology.recipes.ui.ui.FilterFragment"
+        android:name="ru.netology.recipes.ui.FilterFragment"
         android:label="FilterFragment">
         <argument
             android:name="ShowAppBar"
