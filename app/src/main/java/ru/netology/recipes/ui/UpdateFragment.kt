@@ -6,60 +6,60 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.util.LongArgs
 import ru.netology.nmedia.util.StringArgs
 import ru.netology.recipes.R
-import ru.netology.recipes.databinding.FragmentFavouriteBinding
 import ru.netology.recipes.databinding.FragmentUpdateBinding
-import ru.netology.recipes.dto.Category
-import ru.netology.recipes.dto.Recipe
 import ru.netology.recipes.viewModel.RecipeViewModel
 
 class UpdateFragment : Fragment() {
+
+    private var categoryRecipeNumber = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val binding = FragmentUpdateBinding.inflate(inflater, container, false)
         val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
-
-        binding.checkBoxEuropean.text = binding.checkBoxEuropean.context.showCategories(Category.European)
-        binding.checkBoxAsian.text = binding.checkBoxAsian.context.showCategories(Category.Asian)
-        binding.checkBoxPanasian.text = binding.checkBoxPanasian.context.showCategories(Category.PanAsian)
-        binding.checkBoxEastern.text = binding.checkBoxEastern.context.showCategories(Category.Eastern)
-        binding.checkBoxAmerican.text = binding.checkBoxAmerican.context.showCategories(Category.American)
-        binding.checkBoxRussian.text = binding.checkBoxRussian.context.showCategories(Category.Russian)
-        binding.checkBoxMediterranean.text =
-            binding.checkBoxMediterranean.context.showCategories(Category.Mediterranean)
 
         val title = arguments?.titleArg
         val authorName = arguments?.authorNameArg
         val categoryRecipe = arguments?.textArg
         val textRecipe = arguments?.textArg
 
+        binding.categoryRecipeCheckBox.setOnCheckedChangeListener { _, i ->
+            when (i) {
+                R.id.checkBoxEuropean -> categoryRecipeNumber = binding.checkBoxEuropean.text.toString()
+                R.id.checkBoxAsian -> categoryRecipeNumber = binding.checkBoxAsian.text.toString()
+                R.id.checkBoxPanasian -> categoryRecipeNumber = binding.checkBoxPanasian.text.toString()
+                R.id.checkBoxEastern -> categoryRecipeNumber = binding.checkBoxEastern.text.toString()
+                R.id.checkBoxAmerican -> categoryRecipeNumber = binding.checkBoxAmerican.text.toString()
+                R.id.checkBoxRussian -> categoryRecipeNumber = binding.checkBoxRussian.text.toString()
+                R.id.checkBoxMediterranean -> categoryRecipeNumber = binding.checkBoxMediterranean.text.toString()
+
+            }
+        }
+
         title?.let { binding.title.setText(it) }
         authorName?.let { binding.authorName.setText(it) }
-        categoryRecipe?.let { binding.categoryRecipe.setText(it) }
         textRecipe?.let { binding.textRecipe.setText(it) }
-
-
 
             binding.title.requestFocus()
             binding.buttonSave.setOnClickListener {
                 if (!binding.title.text.isNullOrBlank()
                     && !binding.authorName.text.isNullOrBlank()
-                    && !binding.categoryRecipe.text.isNullOrBlank()
+                    && !categoryRecipe.isNullOrBlank()
                     && !binding.textRecipe.text.isNullOrBlank()
                         ) {
                         viewModel.onSaveButtonClicked(
                             title = binding.title.text.toString(),
                             authorName = binding.authorName.text.toString(),
-                            categoryRecipe = getCheckedCategory(binding.categoryRecipeCheckBox.checkedRadioButtonId),
+                            categoryRecipe = categoryRecipeNumber,
                             textRecipe = binding.textRecipe.text.toString()
                         )
                 } else {
@@ -69,17 +69,6 @@ class UpdateFragment : Fragment() {
                 findNavController().navigateUp()
             }
         return binding.root
-    }
-
-    private fun getCheckedCategory(checkedId: Int) = when (checkedId) {
-        R.id.checkBoxEuropean -> Category.European
-        R.id.checkBoxAsian -> Category.Asian
-        R.id.checkBoxPanasian -> Category.PanAsian
-        R.id.checkBoxEastern -> Category.Eastern
-        R.id.checkBoxAmerican -> Category.American
-        R.id.checkBoxRussian -> Category.Russian
-        R.id.checkBoxMediterranean -> Category.Mediterranean
-        else -> throw IllegalArgumentException("Unknown type: $checkedId")
     }
 
     companion object {
@@ -103,4 +92,3 @@ class UpdateFragment : Fragment() {
 
 
 
-}

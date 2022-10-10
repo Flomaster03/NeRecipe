@@ -70,18 +70,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
         toCreateFragment.call()
     }
 
-//    override fun onSaveClicked(title: String, authorName: String, categoryRecipe: String, textRecipe: String) {
-//
-//        val recipe = Recipe(
-//            id = RecipeRepository.NEW_ID,
-//            title = title,
-//            authorName = authorName,
-//            categoryRecipe = categoryRecipe,
-//            textRecipe = textRecipe
-//        )
-//        repository.save(recipe)
-//        currentRecipe.value = null
-//    }
 
     override fun onSaveButtonClicked(
                                      title: String,

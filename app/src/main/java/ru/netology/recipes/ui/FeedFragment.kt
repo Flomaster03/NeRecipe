@@ -40,10 +40,11 @@ class FeedFragment : Fragment() {
             adapter.submitList(recipes)
         }
 
+
+
         binding.addRecipe.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_createFragment)
         }
-
 
 
         viewModel.toFavoriteFragment.observe(viewLifecycleOwner) {
@@ -51,6 +52,7 @@ class FeedFragment : Fragment() {
                 R.id.action_feedFragment_to_favouriteFragment
             )
         }
+
 
         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
             val updatedRecipe = viewModel.updateRecipe.value
@@ -64,12 +66,14 @@ class FeedFragment : Fragment() {
                 })
         }
 
+
         viewModel.toSingleFragment.observe(viewLifecycleOwner) { id ->
             findNavController().navigate(
                 R.id.action_feedFragment_to_viewSingleFragment,
                 Bundle().apply { idArgs = id }
             )
         }
+
 
         viewModel.toFilterFragment.observe(viewLifecycleOwner) {
             findNavController().navigate(
@@ -106,23 +110,23 @@ class FeedFragment : Fragment() {
                 }
 
                 override fun onQueryTextChange(newText: String): Boolean {
-
                     if (newText.isNotBlank()) {
                         viewModel.onSearchClicked(newText)
                         viewRecipe()
                     }
-                    if (TextUtils.isEmpty(newText)){
+                    if (TextUtils.isEmpty(newText)) {
                         viewModel.clearFilter()
                         viewRecipe()
                     }
                     return false
                 }
-            })
+            }
+            )
         }
 
         binding.addRecipe.setOnClickListener {
             viewModel.onCreateClicked()
         }
-     return binding.root
+        return binding.root
     }
 }

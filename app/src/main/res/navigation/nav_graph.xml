@@ -64,6 +64,10 @@
         android:id="@+id/viewSingleFragment"
         android:name="ru.netology.recipes.ui.ViewSingleFragment"
         android:label="fragment_view_single"
-        tools:layout="@layout/fragment_view_single" />
+        tools:layout="@layout/fragment_view_single" >
+        <action
+            android:id="@+id/action_viewSingleFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
 
 </navigation>
