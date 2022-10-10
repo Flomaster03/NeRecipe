@@ -14,6 +14,7 @@ import ru.netology.nmedia.util.StringArgs
 import ru.netology.recipes.R
 import ru.netology.recipes.databinding.FragmentFavouriteBinding
 import ru.netology.recipes.databinding.FragmentUpdateBinding
+import ru.netology.recipes.dto.Category
 import ru.netology.recipes.dto.Recipe
 import ru.netology.recipes.viewModel.RecipeViewModel
 
@@ -27,6 +28,14 @@ class UpdateFragment : Fragment() {
         val binding = FragmentUpdateBinding.inflate(inflater, container, false)
         val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
+        binding.checkBoxEuropean.text = binding.checkBoxEuropean.context.showCategories(Category.European)
+        binding.checkBoxAsian.text = binding.checkBoxAsian.context.showCategories(Category.Asian)
+        binding.checkBoxPanasian.text = binding.checkBoxPanasian.context.showCategories(Category.PanAsian)
+        binding.checkBoxEastern.text = binding.checkBoxEastern.context.showCategories(Category.Eastern)
+        binding.checkBoxAmerican.text = binding.checkBoxAmerican.context.showCategories(Category.American)
+        binding.checkBoxRussian.text = binding.checkBoxRussian.context.showCategories(Category.Russian)
+        binding.checkBoxMediterranean.text =
+            binding.checkBoxMediterranean.context.showCategories(Category.Mediterranean)
 
         val title = arguments?.titleArg
         val authorName = arguments?.authorNameArg
