@@ -25,7 +25,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
     val toFilterFragment = SingleLiveEvent<Unit>()
     val updateRecipe = MutableLiveData<Recipe>(null)
     val singleRecipe = MutableLiveData<Recipe?>(null)
-    val feedFragment = data
     private val currentRecipe = MutableLiveData<Recipe?>(null)
 
 
@@ -71,9 +70,35 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
         toCreateFragment.call()
     }
 
-    override fun onSaveClicked(title: String, authorName: String, categoryRecipe: String, textRecipe: String) {
+//    override fun onSaveClicked(title: String, authorName: String, categoryRecipe: String, textRecipe: String) {
+//
+//        val recipe = Recipe(
+//            id = RecipeRepository.NEW_ID,
+//            title = title,
+//            authorName = authorName,
+//            categoryRecipe = categoryRecipe,
+//            textRecipe = textRecipe
+//        )
+//        repository.save(recipe)
+//        currentRecipe.value = null
+//    }
 
-        val recipe = Recipe(
+    override fun onSaveButtonClicked(
+                                     title: String,
+                                     authorName: String,
+                                     categoryRecipe: String,
+                                     textRecipe: String) { //сохранение отредактированного или нового рецепта
+        if (title.isBlank()
+            && authorName.isBlank()
+            && categoryRecipe.isBlank()
+            && textRecipe.isBlank()) return
+
+        val recipe = currentRecipe.value?.copy(
+            title = title,
+            authorName = authorName,
+            categoryRecipe = categoryRecipe,
+            textRecipe = textRecipe
+        ) ?: Recipe(
             id = RecipeRepository.NEW_ID,
             title = title,
             authorName = authorName,
@@ -81,7 +106,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
             textRecipe = textRecipe
         )
         repository.save(recipe)
-        currentRecipe.value = null
+        currentRecipe.value = null // сброс содержимого сохраненного рецепта в строке, где мы его печатали
     }
 
     override fun onSingleRecipeClicked(recipe: Recipe) {

@@ -10,6 +10,6 @@ interface RecipeInteractionListener {
     fun onSearchClicked(text: String)
     fun onCreateClicked()
     fun updateContent(id: Long, title: String, authorName: String, categoryRecipe: String, textRecipe: String)
-    fun onSaveClicked(title: String, authorName: String, categoryRecipe: String, textRecipe: String)
+    fun onSaveButtonClicked( title: String, authorName: String, categoryRecipe: String, textRecipe: String)
     fun onSingleRecipeClicked(recipe: Recipe)
 }

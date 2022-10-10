@@ -2,88 +2,75 @@ package ru.netology.recipes.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.util.LongArgs
 import ru.netology.nmedia.util.StringArgs
 import ru.netology.recipes.R
+import ru.netology.recipes.databinding.FragmentFavouriteBinding
 import ru.netology.recipes.databinding.FragmentUpdateBinding
+import ru.netology.recipes.dto.Recipe
 import ru.netology.recipes.viewModel.RecipeViewModel
 
 class UpdateFragment : Fragment() {
-
-    private val viewModel by activityViewModels<RecipeViewModel>()
-
-    private var categoryRecipeNumber = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentUpdateBinding.inflate(layoutInflater, container, false).also { binding ->
-        incomingArg(binding)
+    ): View {
+        val binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
-        binding.categoryRecipeCheckBox.setOnCheckedChangeListener { _, i ->
-            when (i) {
-                R.id.checkBoxEuropean -> categoryRecipeNumber = "Европейская кухня"
-                R.id.checkBoxAsian -> categoryRecipeNumber = "Азиатская кухня"
-                R.id.checkBoxPanasian -> categoryRecipeNumber = "Паназиатская кухня"
-                R.id.checkBoxEastern -> categoryRecipeNumber = "Восточная кухня"
-                R.id.checkBoxAmerican -> categoryRecipeNumber = "Американская кухня"
-                R.id.checkBoxRussian -> categoryRecipeNumber = "Русская кухня"
-                R.id.checkBoxMediterranean -> categoryRecipeNumber = "Средиземноморская кухня"
+
+        val title = arguments?.titleArg
+        val authorName = arguments?.authorNameArg
+        val categoryRecipe = arguments?.textArg
+        val textRecipe = arguments?.textArg
+
+        title?.let { binding.title.setText(it) }
+        authorName?.let { binding.authorName.setText(it) }
+        categoryRecipe?.let { binding.categoryRecipe.setText(it) }
+        textRecipe?.let { binding.textRecipe.setText(it) }
+
+
+
+            binding.title.requestFocus()
+            binding.buttonSave.setOnClickListener {
+                if (!binding.title.text.isNullOrBlank()
+                    && !binding.authorName.text.isNullOrBlank()
+                    && !binding.categoryRecipe.text.isNullOrBlank()
+                    && !binding.textRecipe.text.isNullOrBlank()
+                        ) {
+                        viewModel.onSaveButtonClicked(
+                            title = binding.title.text.toString(),
+                            authorName = binding.authorName.text.toString(),
+                            categoryRecipe = getCheckedCategory(binding.categoryRecipeCheckBox.checkedRadioButtonId),
+                            textRecipe = binding.textRecipe.text.toString()
+                        )
+                } else {
+                    Toast.makeText(activity, "Все поля должны быть заполнены", Toast.LENGTH_LONG)
+                        .show()
+                }
+                findNavController().navigateUp()
             }
-        }
-
-        binding.buttonSave.setOnClickListener {
-            onSaveButtonClicked(binding)
-        }
-    }.root
-
-    private fun onSaveButtonClicked(binding: FragmentUpdateBinding) {
-
-        val id = arguments?.idArgs ?: return
-        val title = binding.title.text.toString()
-        val authorName = binding.authorName.text.toString()
-        val textRecipe = binding.textRecipe.text.toString()
-
-        if (!emptyCheckUpdateWarning(
-                title = title,
-                authorName = authorName,
-                textRecipe = textRecipe,
-                categoryRecipe = categoryRecipeNumber
-            )
-        ) return
-
-        viewModel.updateContent(
-            id = id,
-            title = title,
-            authorName = authorName,
-            textRecipe = textRecipe,
-            categoryRecipe = categoryRecipeNumber
-        )
-        findNavController().popBackStack()
+        return binding.root
     }
 
-    private fun incomingArg(binding: FragmentUpdateBinding) {
-        binding.title.setText(arguments?.titleArg.toString())
-        binding.authorName.setText(arguments?.authorNameArg.toString())
-        binding.textRecipe.setText(arguments?.textArg.toString())
-    }
-
-    private fun emptyCheckUpdateWarning(
-        title: String,
-        authorName: String,
-        textRecipe: String,
-        categoryRecipe: String
-    ): Boolean {
-        return if (title.isBlank() || authorName.isBlank() || textRecipe.isBlank() || categoryRecipe.isBlank()) {
-            Toast.makeText(activity, "Все поля должны быть заполнены", Toast.LENGTH_LONG).show()
-            false
-        } else true
+    private fun getCheckedCategory(checkedId: Int) = when (checkedId) {
+        R.id.checkBoxEuropean -> Category.European
+        R.id.checkBoxAsian -> Category.Asian
+        R.id.checkBoxPanasian -> Category.PanAsian
+        R.id.checkBoxEastern -> Category.Eastern
+        R.id.checkBoxAmerican -> Category.American
+        R.id.checkBoxRussian -> Category.Russian
+        R.id.checkBoxMediterranean -> Category.Mediterranean
+        else -> throw IllegalArgumentException("Unknown type: $checkedId")
     }
 
     companion object {
@@ -93,4 +80,18 @@ class UpdateFragment : Fragment() {
         var Bundle.categoryArg: String? by StringArgs
         var Bundle.textArg: String? by StringArgs
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

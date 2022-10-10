@@ -9,6 +9,7 @@ import android.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
@@ -22,27 +23,34 @@ import ru.netology.recipes.viewModel.RecipeViewModel
 
 class FeedFragment : Fragment() {
 
-    private val viewModel by activityViewModels<RecipeViewModel>()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
-//       viewModel.toFavoriteFragment.observe(this) {
-//           val direction = FeedRecipeFragmentDirections.favoriteFragment()
-//           findNavController().navigate(direction)
-//       }
+        val adapter = RecipeAdapter(viewModel)
+
+        binding.recipeRecyclerView.adapter = adapter
+
+        viewModel.data.observe(viewLifecycleOwner) { recipes ->
+            adapter.submitList(recipes)
+        }
+
+        binding.addRecipe.setOnClickListener {
+            findNavController().navigate(R.id.action_feedFragment_to_createFragment)
+        }
+
+
 
         viewModel.toFavoriteFragment.observe(viewLifecycleOwner) {
             findNavController().navigate(
                 R.id.action_feedFragment_to_favouriteFragment
             )
         }
-
-//        viewModel.updateRecipeFragment.observe(this) {
-//            val updatedRecipe = viewModel.updateRecipe.value
-//            val directions = FeedRecipeFragmentDirections.updateRecipeFragment(updatedRecipe)
-//            findNavController().navigate(directions)
-//        }
 
         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
             val updatedRecipe = viewModel.updateRecipe.value
@@ -56,56 +64,25 @@ class FeedFragment : Fragment() {
                 })
         }
 
-        //       viewModel.toCreateFragment.observe(this) {
-        //           val directions = FeedRecipeFragmentDirections.recipeCreateFragment()
-        //           findNavController().navigate(directions)
-        //       }
-
-        viewModel.toCreateFragment.observe(viewLifecycleOwner) {
-            findNavController().navigate(
-                R.id.action_feedFragment_to_createFragment
-            )
-        }
-
         viewModel.toSingleFragment.observe(viewLifecycleOwner) { id ->
             findNavController().navigate(
                 R.id.action_feedFragment_to_viewSingleFragment,
                 Bundle().apply { idArgs = id }
             )
         }
-        //       viewModel.singleFragment.observe(this) {
-        //           val viewRecipe = viewModel.singleRecipe.value
-        //           val directions = FeedRecipeFragmentDirections.recipeViewFragment(viewRecipe)
-        //           findNavController().navigate(directions)
-        //       }
 
-        //       viewModel.toFilterFragment.observe(this) {
-        //           val directions = FeedRecipeFragmentDirections.recipeFilterFragment()
-        //           findNavController().navigate(directions)
-        //       }
         viewModel.toFilterFragment.observe(viewLifecycleOwner) {
             findNavController().navigate(
                 R.id.action_feedFragment_to_filterFragment
             )
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentFeedBinding.inflate(layoutInflater, container, false).also { binding ->
-
-        val recipeAdapter = RecipeAdapter(viewModel)
-        binding.recipeRecyclerView.adapter = recipeAdapter
 
         fun viewRecipe() {
             viewModel.data.observe(viewLifecycleOwner) { recipe ->
-                recipeAdapter.submitList(recipe)
+                adapter.submitList(recipe)
             }
         }
         viewRecipe()
-
         if (viewModel.filterIsActive) {
             binding.buttonClearFilter.isVisible = viewModel.filterIsActive
             binding.buttonClearFilter.setOnClickListener {
@@ -143,24 +120,9 @@ class FeedFragment : Fragment() {
             })
         }
 
-        //       binding.bottomToolbar.setOnItemSelectedListener { menuItem ->
-        //           when (menuItem.itemId) {
-        //               R.id.favourites -> {
-        //                   viewModel.favoriteFragment.call()
-        //                   true
-        //               }
-        //               R.id.filter -> {
-        //                   viewModel.filterFragment.call()
-        //                   viewModel.clearFilter()
-        //                   true
-        //               }
-        //               else -> false
-        //           }
-        //       }
-
         binding.addRecipe.setOnClickListener {
             viewModel.onCreateClicked()
         }
-
-    }.root
+     return binding.root
+    }
 }

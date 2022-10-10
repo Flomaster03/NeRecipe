@@ -33,6 +33,8 @@ class ViewSingleFragment : Fragment() {
             }
             viewHolder.bind(singleRecipe)
         }
+            // TODO: берется рецепт, у него берется id, а все текстовые значения перегоняются в textarg.
+            //  Потом их из бандла нужно будет получить в методе update.
 
         return binding.root
     }
@@ -47,25 +49,3 @@ class ViewSingleFragment : Fragment() {
 
 
 }
-//    private val args by navArgs<toRecipeViewFragmentArgs>()
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ) = FragmentViewOfSingleRecipeBinding.inflate(layoutInflater, container, false).also { binding ->
-//        incomingArg(binding)
-//        binding.bottomToolbar.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.feed -> findNavController().popBackStack()
-//            }
-//            true
-//        }
-//    }.root
-//
-//    private fun incomingArg (binding: FragmentViewOfSingleRecipeBinding) {
-//        binding.title.text = args.viewRecipe?.title.toString()
-//        binding.authorName.text = args.viewRecipe?.authorName.toString()
-//        binding.categoryRecipe.text = args.viewRecipe?.categoryRecipe.toString()
-//        binding.textRecipe.text = args.viewRecipe?.textRecipe.toString()
-//    }
-//}
