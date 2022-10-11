@@ -61,7 +61,6 @@ class FavouriteFragment : Fragment() {
                 }
                 } else return@observe
             )
-           // findNavController().navigateUp()
         }
 
 
@@ -70,7 +69,6 @@ class FavouriteFragment : Fragment() {
                 R.id.action_favouriteFragment_to_viewSingleFragment,
                 Bundle().apply { idArgs = id }
             )
-           // findNavController().navigateUp()
         }
 
         return binding.root

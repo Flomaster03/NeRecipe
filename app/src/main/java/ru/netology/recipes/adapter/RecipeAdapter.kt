@@ -86,4 +86,6 @@ class RecipeAdapter(
         val recipe = getItem(position)
         holder.bind(recipe)
     }
+
+
 }

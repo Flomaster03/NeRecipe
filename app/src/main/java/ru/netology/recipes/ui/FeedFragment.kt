@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentFeedBinding
@@ -39,6 +41,7 @@ class FeedFragment : Fragment() {
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
             adapter.submitList(recipes)
         }
+
 
 
         binding.addRecipe.setOnClickListener {
@@ -88,12 +91,13 @@ class FeedFragment : Fragment() {
             )
         }
 
- /*       fun viewRecipe() {
+        fun viewRecipe() {
             viewModel.data.observe(viewLifecycleOwner) { recipe ->
                 adapter.submitList(recipe)
             }
         }
-        viewRecipe()
+
+ /*       viewRecipe()
         if (viewModel.filterIsActive) {
             binding.buttonClearFilter.isVisible = viewModel.filterIsActive
             binding.buttonClearFilter.setOnClickListener {
@@ -110,7 +114,8 @@ class FeedFragment : Fragment() {
                 viewModel.toggleCheckAsian = true
             }
         } else {
-            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
