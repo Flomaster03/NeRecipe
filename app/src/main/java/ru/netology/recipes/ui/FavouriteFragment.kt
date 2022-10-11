@@ -13,6 +13,11 @@ import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentFavouriteBinding
 import ru.netology.recipes.databinding.FragmentFeedBinding
+import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
+import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
+import ru.netology.recipes.ui.UpdateFragment.Companion.idArgs
+import ru.netology.recipes.ui.UpdateFragment.Companion.textArg
+import ru.netology.recipes.ui.UpdateFragment.Companion.titleArg
 import ru.netology.recipes.viewModel.RecipeViewModel
 
 class FavouriteFragment : Fragment() {
@@ -44,14 +49,30 @@ class FavouriteFragment : Fragment() {
 
         }
         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_favouriteFragment_to_updateFragment)
-            findNavController().navigateUp()
+            val updatedRecipe = viewModel.updateRecipe.value
+            findNavController().navigate(
+                R.id.action_favouriteFragment_to_updateFragment,
+                if (updatedRecipe != null) { Bundle().apply {
+                    idArgs = updatedRecipe.id
+                    titleArg = updatedRecipe.title
+                    authorNameArg = updatedRecipe.authorName
+                    categoryArg = updatedRecipe.categoryRecipe
+                    textArg = updatedRecipe.textRecipe
+                }
+                } else return@observe
+            )
+           // findNavController().navigateUp()
         }
 
-        viewModel.toSingleFragment.observe(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_favouriteFragment_to_viewSingleFragment)
-            findNavController().navigateUp()
+
+        viewModel.toSingleFragment.observe(viewLifecycleOwner) { id ->
+            findNavController().navigate(
+                R.id.action_favouriteFragment_to_viewSingleFragment,
+                Bundle().apply { idArgs = id }
+            )
+           // findNavController().navigateUp()
         }
+
         return binding.root
     }
 }

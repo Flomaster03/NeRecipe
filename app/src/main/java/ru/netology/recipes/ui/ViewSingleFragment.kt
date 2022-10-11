@@ -12,6 +12,11 @@ import ru.netology.nmedia.util.StringArgs
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentViewSingleBinding
+import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
+import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
+import ru.netology.recipes.ui.UpdateFragment.Companion.idArgs
+import ru.netology.recipes.ui.UpdateFragment.Companion.textArg
+import ru.netology.recipes.ui.UpdateFragment.Companion.titleArg
 import ru.netology.recipes.viewModel.RecipeViewModel
 
 class ViewSingleFragment : Fragment() {
@@ -33,22 +38,25 @@ class ViewSingleFragment : Fragment() {
                 return@observe
             }
             viewHolder.bind(singleRecipe)
-            binding.singleRecipeLayout.title.text = singleRecipe.title
-            binding.singleRecipeLayout.authorName.text = singleRecipe.authorName
-            binding.singleRecipeLayout.categoryRecipe.text = singleRecipe.categoryRecipe
-            binding.singleRecipeLayout.textRecipe.text = singleRecipe.textRecipe
+  //          binding.singleRecipeLayout.title.text = singleRecipe.title
+  //          binding.singleRecipeLayout.authorName.text = singleRecipe.authorName
+  //          binding.singleRecipeLayout.categoryRecipe.text = singleRecipe.categoryRecipe
+  //          binding.singleRecipeLayout.textRecipe.text = singleRecipe.textRecipe
         }
 
 
         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
+            val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
                 R.id.action_viewSingleFragment_to_updateFragment,
-                Bundle().apply {
-                    titleArg = binding.singleRecipeLayout.title.text.toString()
-                    authorNameArg = binding.singleRecipeLayout.authorName.text.toString()
-                    categoryArg = binding.singleRecipeLayout.categoryRecipe.text.toString()
-                    textArg = binding.singleRecipeLayout.textRecipe.text.toString()
+                if (updatedRecipe != null) { Bundle().apply {
+                    idArgs = updatedRecipe.id
+                    titleArg = updatedRecipe.title
+                    authorNameArg = updatedRecipe.authorName
+                    categoryArg = updatedRecipe.categoryRecipe
+                    textArg = updatedRecipe.textRecipe
                 }
+                } else return@observe
             )
         }
         return binding.root

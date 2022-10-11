@@ -19,7 +19,7 @@
     <string name="button_favourite_description">Favorite</string>
     <string name="button_add_recipe_description">Add recipe</string>
     <string name="button_apply_text">Apply</string>
-    <string name="empty_text_favourite">Theres nothing here yet!</string>
+    <string name="empty_text_favourite">There is nothing here yet!</string>
     <string name="remove">Remove</string>
     <string name="edit">Edit</string>
     <string name="search">Search</string>

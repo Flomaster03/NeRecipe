@@ -18,12 +18,14 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/emptyFavouriteImage"
-        android:layout_width="402dp"
-        android:layout_height="569dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/food"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/emptyFavouriteText"
@@ -31,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/empty_text_favourite"
         android:textSize="24sp"
-        android:gravity="center"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="@id/emptyFavouriteImage"
         app:layout_constraintStart_toStartOf="@id/emptyFavouriteImage"
         app:layout_constraintTop_toBottomOf="@id/emptyFavouriteImage" />

@@ -36,8 +36,8 @@ class RecipeRepositoryImpl(
         dao.removeById(recipe.id)
     }
 
-    override fun favourite(long: Long) {
-        dao.favById(long)
+    override fun favourite(recipeId: Long) {
+        dao.favById(recipeId)
     }
 
     override fun searchText(Text: String) {

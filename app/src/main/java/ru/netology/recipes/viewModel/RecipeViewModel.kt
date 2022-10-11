@@ -47,7 +47,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
             textRecipe = textRecipe
         )
         repository.save(recipe)
-        currentRecipe.value = null
+        //currentRecipe.value = null
 
     }
 
@@ -64,6 +64,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
         repository.favourite(recipeId)
     }
 
+
     override fun onSearchClicked(text: String) {
         repository.searchText(text)
     }
@@ -74,7 +75,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
 
 
     override fun onSaveButtonClicked(
-
         title: String,
         authorName: String,
         categoryRecipe: String,
@@ -104,8 +104,8 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
     }
 
     override fun onSingleRecipeClicked(recipe: Recipe) {
-        singleRecipe.value = recipe
-        toSingleFragment.call()
+        toSingleFragment.value = recipe.id
+
     }
 
     var toggleCheckEuropean = true

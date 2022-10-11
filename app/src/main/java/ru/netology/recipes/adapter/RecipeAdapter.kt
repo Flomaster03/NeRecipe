@@ -48,7 +48,7 @@ class RecipeAdapter(
             binding.textRecipe.setOnClickListener { listener.onSingleRecipeClicked(recipe) }
 
             binding.menuOptions.setOnClickListener { popupMenu.show() }
-
+            binding.buttonFavourite.setOnClickListener { listener.onFavouriteClicked(recipe.id) }
         }
 
         fun bind(recipe: Recipe) {

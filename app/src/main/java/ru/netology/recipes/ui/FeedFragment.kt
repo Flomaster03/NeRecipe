@@ -41,10 +41,14 @@ class FeedFragment : Fragment() {
         }
 
 
-
-        viewModel.toCreateFragment.observe(viewLifecycleOwner) {
+        binding.addRecipe.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_createFragment)
         }
+
+//       viewModel.toCreateFragment.observe(viewLifecycleOwner) {
+//           println("toFragment")
+//           findNavController().navigate(R.id.action_feedFragment_to_createFragment)
+//       }
 
 
         viewModel.toFavoriteFragment.observe(viewLifecycleOwner) {

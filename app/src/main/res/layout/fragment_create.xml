@@ -11,7 +11,7 @@
         android:id="@+id/scrollContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonSave"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,7 +63,7 @@
 
             <RadioGroup
                 android:id="@+id/categoryRecipeCheckBox"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/common_margin"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -115,8 +115,6 @@
                     android:text="@string/mediterranean_type" />
 
             </RadioGroup>
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
