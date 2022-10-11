@@ -47,6 +47,8 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
             textRecipe = textRecipe
         )
         repository.save(recipe)
+        currentRecipe.value = null
+
     }
 
     override fun onRemoveClicked(recipe: Recipe) {
@@ -72,14 +74,17 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
 
 
     override fun onSaveButtonClicked(
-                                     title: String,
-                                     authorName: String,
-                                     categoryRecipe: String,
-                                     textRecipe: String) { //сохранение отредактированного или нового рецепта
+
+        title: String,
+        authorName: String,
+        categoryRecipe: String,
+        textRecipe: String
+    ) { //сохранение отредактированного или нового рецепта
         if (title.isBlank()
             && authorName.isBlank()
             && categoryRecipe.isBlank()
-            && textRecipe.isBlank()) return
+            && textRecipe.isBlank()
+        ) return
 
         val recipe = currentRecipe.value?.copy(
             title = title,
@@ -94,7 +99,8 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
             textRecipe = textRecipe
         )
         repository.save(recipe)
-        currentRecipe.value = null // сброс содержимого сохраненного рецепта в строке, где мы его печатали
+        currentRecipe.value =
+            null // сброс содержимого сохраненного рецепта в строке, где мы его печатали
     }
 
     override fun onSingleRecipeClicked(recipe: Recipe) {

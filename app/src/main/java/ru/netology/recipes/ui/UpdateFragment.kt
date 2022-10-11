@@ -56,7 +56,8 @@ class UpdateFragment : Fragment() {
                     && !categoryRecipe.isNullOrBlank()
                     && !binding.textRecipe.text.isNullOrBlank()
                         ) {
-                        viewModel.onSaveButtonClicked(
+                        viewModel.updateContent(
+                            id = arguments?.idArgs!!,
                             title = binding.title.text.toString(),
                             authorName = binding.authorName.text.toString(),
                             categoryRecipe = categoryRecipeNumber,

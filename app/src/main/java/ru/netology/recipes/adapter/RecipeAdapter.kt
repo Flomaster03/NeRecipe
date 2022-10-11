@@ -1,6 +1,5 @@
 package ru.netology.recipes.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.recipes.R
 import ru.netology.recipes.databinding.SingleRecipeBinding
-import ru.netology.recipes.dto.Category
 import ru.netology.recipes.dto.Recipe
 
 class RecipeAdapter(
@@ -88,16 +86,4 @@ class RecipeAdapter(
         val recipe = getItem(position)
         holder.bind(recipe)
     }
-
-    fun Context.showCategories(category: Category): String {
-        return when (category) {
-            Category.European -> getString(R.string.european_type)
-            Category.Asian -> getString(R.string.asian_type)
-            Category.PanAsian -> getString(R.string.panasian_type)
-            Category.Eastern -> getString(R.string.eastern_type)
-            Category.American -> getString(R.string.american_type)
-            Category.Russian -> getString(R.string.russian_type)
-            Category.Mediterranean -> getString(R.string.mediterranean_type)
-        }
-
 }

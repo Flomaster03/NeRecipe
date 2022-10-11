@@ -42,7 +42,7 @@ class FeedFragment : Fragment() {
 
 
 
-        binding.addRecipe.setOnClickListener {
+        viewModel.toCreateFragment.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_feedFragment_to_createFragment)
         }
 
@@ -58,12 +58,15 @@ class FeedFragment : Fragment() {
             val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
                 R.id.action_feedFragment_to_updateFragment,
-                Bundle().apply {
-                    titleArg = updatedRecipe?.title
-                    authorNameArg = updatedRecipe?.authorName
-                    categoryArg = updatedRecipe?.categoryRecipe
-                    textArg = updatedRecipe?.textRecipe
-                })
+                if (updatedRecipe != null) { Bundle().apply {
+                    idArgs = updatedRecipe.id
+                    titleArg = updatedRecipe.title
+                    authorNameArg = updatedRecipe.authorName
+                    categoryArg = updatedRecipe.categoryRecipe
+                    textArg = updatedRecipe.textRecipe
+                }
+                } else return@observe
+            )
         }
 
 
@@ -81,7 +84,7 @@ class FeedFragment : Fragment() {
             )
         }
 
-        fun viewRecipe() {
+ /*       fun viewRecipe() {
             viewModel.data.observe(viewLifecycleOwner) { recipe ->
                 adapter.submitList(recipe)
             }
@@ -126,7 +129,7 @@ class FeedFragment : Fragment() {
 
         binding.addRecipe.setOnClickListener {
             viewModel.onCreateClicked()
-        }
+        }*/
         return binding.root
     }
 }

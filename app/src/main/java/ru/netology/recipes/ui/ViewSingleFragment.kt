@@ -12,10 +12,6 @@ import ru.netology.nmedia.util.StringArgs
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentViewSingleBinding
-import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
-import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
-import ru.netology.recipes.ui.UpdateFragment.Companion.textArg
-import ru.netology.recipes.ui.UpdateFragment.Companion.titleArg
 import ru.netology.recipes.viewModel.RecipeViewModel
 
 class ViewSingleFragment : Fragment() {
