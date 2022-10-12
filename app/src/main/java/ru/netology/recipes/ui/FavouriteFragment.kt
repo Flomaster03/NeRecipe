@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentFavouriteBinding
-import ru.netology.recipes.databinding.FragmentFeedBinding
 import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.idArgs
@@ -43,8 +41,8 @@ class FavouriteFragment : Fragment() {
                 binding.emptyFavouriteImage.isVisible = favRecipes
             }
             viewModel.data.observe(viewLifecycleOwner) { recipes ->
-                val favRecipes = recipes.filter { it.isFavourite }
-                adapter.submitList(favRecipes)
+                val listFavRecipes = recipes.filter { it.isFavourite }
+                adapter.submitList(listFavRecipes)
             }
 
         }

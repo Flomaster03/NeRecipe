@@ -49,6 +49,12 @@
         <argument
             android:name="ShowAppBar"
             android:defaultValue="true" />
+        <action
+            android:id="@+id/action_filterFragment_to_filterListFragment"
+            app:destination="@id/filterListFragment" />
+        <action
+            android:id="@+id/action_filterFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
@@ -68,6 +74,18 @@
         <action
             android:id="@+id/action_viewSingleFragment_to_updateFragment"
             app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterListFragment"
+        android:name="ru.netology.recipes.ui.FilterListFragment"
+        android:label="fragment_filter_list"
+        tools:layout="@layout/fragment_filter_list" >
+        <action
+            android:id="@+id/action_filterListFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_filterListFragment_to_viewSingleFragment"
+            app:destination="@id/viewSingleFragment" />
     </fragment>
 
 </navigation>

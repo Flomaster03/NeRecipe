@@ -60,7 +60,7 @@ class UpdateFragment : Fragment() {
         binding.buttonSave.setOnClickListener {
             if (!binding.title.text.isNullOrBlank()
                 && !binding.authorName.text.isNullOrBlank()
-                && !categoryRecipe.isNullOrBlank()
+                && !categoryRecipe.isBlank()
                 && !binding.textRecipe.text.isNullOrBlank()
             ) {
                 viewModel.updateContent(

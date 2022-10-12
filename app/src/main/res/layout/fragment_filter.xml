@@ -119,6 +119,7 @@
         android:text="@string/button_apply_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxMediterranean" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxMediterranean"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
