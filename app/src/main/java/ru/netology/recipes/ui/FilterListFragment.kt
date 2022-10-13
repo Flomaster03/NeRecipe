@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
-import ru.netology.recipes.databinding.FragmentFavouriteBinding
 import ru.netology.recipes.databinding.FragmentFilterListBinding
 import ru.netology.recipes.dto.Recipe
 import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
@@ -49,7 +47,7 @@ class FilterListFragment : Fragment() {
 
 
         fun find (resipes: List<Recipe>?, categories: MutableList<String>?): MutableList<Recipe>? {
-            var showFilteredList: MutableList<Recipe>? = null
+            val showFilteredList: MutableList<Recipe>? = null
             if (categories != null) {
                 for (category in categories) {
                     if (resipes != null) {
@@ -66,10 +64,10 @@ class FilterListFragment : Fragment() {
 
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
             val dataList = viewModel.data.value
-            val categoriesList = viewModel.filteredList?.value
-            var showFilteredList = find(dataList, categoriesList)?.toList()
+            val categoriesList = viewModel.filteredList.value
+            val showFilteredList = find(dataList, categoriesList)?.toList()
             if (showFilteredList != null) {
-                adapter.submitList(showFilteredList!!)
+                adapter.submitList(showFilteredList)
             } else {
                 Toast.makeText(activity, "Ничего не найдено", Toast.LENGTH_LONG)
                     .show()

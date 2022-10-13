@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
-import ru.netology.recipes.databinding.FragmentFeedBinding
 import ru.netology.recipes.databinding.FragmentFilterBinding
-import ru.netology.recipes.ui.UpdateFragment.Companion.idArgs
 import ru.netology.recipes.viewModel.RecipeViewModel
 
 class FilterFragment : Fragment() {
@@ -49,58 +46,66 @@ class FilterFragment : Fragment() {
         if (viewModel.toggleCheckMediterranean)
             binding.checkBoxMediterranean.isChecked = false
 
-
         binding.buttonApply.setOnClickListener {
-            var checkedCount = 0
+            onButtonApply(binding)
 
-            viewModel.filteredList.value?.clear()
-
-            if (!binding.checkBoxEuropean.isChecked) {
-                checkedCount++
-                viewModel.showEuropean(binding.checkBoxEuropean.text.toString())
-            } else viewModel.toggleCheckEuropean = true
-            if (!binding.checkBoxAsian.isChecked) {
-                checkedCount++
-                viewModel.showAsian(binding.checkBoxAsian.text.toString())
-            } else viewModel.toggleCheckAsian = true
-            if (!binding.checkBoxPanasian.isChecked) {
-                checkedCount++
-                viewModel.showPanasian(binding.checkBoxPanasian.text.toString())
-            } else viewModel.toggleCheckPanasian = true
-            if (!binding.checkBoxEastern.isChecked) {
-                checkedCount++
-                viewModel.showEastern(binding.checkBoxEastern.text.toString())
-            } else viewModel.toggleCheckEastern = true
-            if (!binding.checkBoxAmerican.isChecked) {
-                checkedCount++
-                viewModel.showAmerican(binding.checkBoxAmerican.text.toString())
-            } else viewModel.toggleCheckAmerican = true
-            if (!binding.checkBoxRussian.isChecked) {
-                checkedCount++
-                viewModel.showRussian(binding.checkBoxRussian.text.toString())
-            } else viewModel.toggleCheckRussian = true
-            if (!binding.checkBoxMediterranean.isChecked) {
-                checkedCount++
-                viewModel.showMediterranean(binding.checkBoxMediterranean.text.toString())
-            } else viewModel.toggleCheckMediterranean = true
-
-            if (checkedCount == 0) {
-                viewModel.clearFilter()
-                viewModel.filterIsActive = false
-                Toast.makeText(activity, "Ничего не выбрано", Toast.LENGTH_LONG)
-                    .show()
-                findNavController().navigateUp()
-            } else {
-                viewModel.toFilterListFragment.observe(viewLifecycleOwner) {
-                    findNavController().navigate(
-                        R.id.action_filterFragment_to_filterListFragment)
-                }
-            }
         }
-
         return binding.root
     }
+
+    fun onButtonApply(binding: FragmentFilterBinding) {
+
+        var checkedCount = 0
+
+        viewModel.filteredList.value?.clear()
+
+        if (!binding.checkBoxEuropean.isChecked) {
+            checkedCount++
+            viewModel.showEuropean(binding.checkBoxEuropean.text.toString())
+        } else viewModel.toggleCheckEuropean = true
+        if (!binding.checkBoxAsian.isChecked) {
+            checkedCount++
+            viewModel.showAsian(binding.checkBoxAsian.text.toString())
+        } else viewModel.toggleCheckAsian = true
+        if (!binding.checkBoxPanasian.isChecked) {
+            checkedCount++
+            viewModel.showPanasian(binding.checkBoxPanasian.text.toString())
+        } else viewModel.toggleCheckPanasian = true
+        if (!binding.checkBoxEastern.isChecked) {
+            checkedCount++
+            viewModel.showEastern(binding.checkBoxEastern.text.toString())
+        } else viewModel.toggleCheckEastern = true
+        if (!binding.checkBoxAmerican.isChecked) {
+            checkedCount++
+            viewModel.showAmerican(binding.checkBoxAmerican.text.toString())
+        } else viewModel.toggleCheckAmerican = true
+        if (!binding.checkBoxRussian.isChecked) {
+            checkedCount++
+            viewModel.showRussian(binding.checkBoxRussian.text.toString())
+        } else viewModel.toggleCheckRussian = true
+        if (!binding.checkBoxMediterranean.isChecked) {
+            checkedCount++
+            viewModel.showMediterranean(binding.checkBoxMediterranean.text.toString())
+        } else viewModel.toggleCheckMediterranean = true
+
+        if (checkedCount == 0) {
+            viewModel.clearFilter()
+            viewModel.filterIsActive = false
+            Toast.makeText(activity, "Ничего не выбрано", Toast.LENGTH_LONG)
+                .show()
+            findNavController().navigateUp()
+        } else {
+            viewModel.toFilterListFragment.observe(viewLifecycleOwner) {
+                findNavController().navigate(
+                    R.id.action_filterFragment_to_filterListFragment
+                )
+            }
+        }
+    }
+
+
 }
+
 
 
 
