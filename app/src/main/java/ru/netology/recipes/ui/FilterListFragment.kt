@@ -39,43 +39,51 @@ class FilterListFragment : Fragment() {
             adapter.submitList(recipes)
         }
 
-        if (viewModel.filteredList.value != null ) {
+        if (viewModel.filteredList.value != null) {
             binding.emptyFilterText.isInvisible
             binding.emptyFilterImage.isInvisible
         }
 
-
-
-        fun find (resipes: List<Recipe>?, categories: MutableList<String>?): MutableList<Recipe>? {
-            val showFilteredList: MutableList<Recipe>? = null
-            if (categories != null) {
-                for (category in categories) {
-                    if (resipes != null) {
-                        for (recipe in resipes) {
-                            if (recipe.categoryRecipe == category) {
-                                showFilteredList?.add(recipe)
-                            }
-                        }
-                    }
-                }
-            }
-            return showFilteredList
-        }
-
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            val dataList = viewModel.data.value
-            val categoriesList = viewModel.filteredList.value
-            val showFilteredList = find(dataList, categoriesList)?.toList()
-            if (showFilteredList != null) {
+            val showFilteredList = recipes.filter {
+                viewModel.filteredList.value!!.contains(it.categoryRecipe)
+            }
+            if (showFilteredList.isNotEmpty()) {
                 adapter.submitList(showFilteredList)
             } else {
                 Toast.makeText(activity, "Ничего не найдено", Toast.LENGTH_LONG)
                     .show()
                 findNavController().navigateUp()
             }
+
         }
 
+        //      fun find (resipes: List<Recipe>?, categories: MutableList<String>?): MutableList<Recipe>? {
+        //          val showFilteredList: MutableList<Recipe>? = null
+        //          if (categories != null) {
+        //              for (category in categories) {
+        //                  if (resipes != null) {
+        //                      for (recipe in resipes) {
+        //                          if (recipe.categoryRecipe == category) {
+        //                              showFilteredList?.add(recipe)
+        //                          }
+        //                      }
+        //                  }
+        //              }
+        //          }
+        //          return showFilteredList
+        //       }
 
+        //      viewModel.data.observe(viewLifecycleOwner) { recipes ->
+        //          val dataList = viewModel.data.value
+        //          val categoriesList = viewModel.filteredList.value
+        //          val showFilteredList = find(dataList, categoriesList)?.toList()
+        //          if (showFilteredList != null) {
+        //              adapter.submitList(showFilteredList)
+        //          } else {
+        //
+        //          }
+        //      }
         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
             val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
