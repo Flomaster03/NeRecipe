@@ -39,17 +39,16 @@ class FilterListFragment : Fragment() {
             adapter.submitList(recipes)
         }
 
-        if (viewModel.filteredList.value != null) {
-            binding.emptyFilterText.isInvisible
-            binding.emptyFilterImage.isInvisible
-        }
+        //binding.emptyFilterText.isInvisible
+       // binding.emptyFilterImage.isInvisible
 
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
             val showFilteredList = recipes.filter {
-                viewModel.filteredList.value!!.contains(it.categoryRecipe)
+                viewModel.filteredList.contains(it.categoryRecipe)
             }
             if (showFilteredList.isNotEmpty()) {
                 adapter.submitList(showFilteredList)
+                findNavController().navigateUp()
             } else {
                 Toast.makeText(activity, "Ничего не найдено", Toast.LENGTH_LONG)
                     .show()

@@ -56,58 +56,63 @@ class FilterFragment : Fragment() {
     fun onButtonApply(binding: FragmentFilterBinding) {
 
         var checkedCount = 7
+        val categoryList = arrayListOf<String>()
+        viewModel.filteredList.clear()
 
-        viewModel.filteredList.value?.clear()
-
-        if (!binding.checkBoxEuropean.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxEuropean.text.toString())
+        if (binding.checkBoxEuropean.isChecked) {
+            categoryList.add(binding.checkBoxEuropean.text.toString())
             viewModel.showEuropean(binding.checkBoxEuropean.text.toString())
         } else --checkedCount
+        viewModel.toggleCheckEuropean = true
 
-        if (!binding.checkBoxAsian.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxAsian.text.toString())
+        if (binding.checkBoxAsian.isChecked) {
+            categoryList.add(binding.checkBoxAsian.text.toString())
             viewModel.showAsian(binding.checkBoxAsian.text.toString())
         } else --checkedCount
-        //viewModel.toggleCheckAsian = true
+        viewModel.toggleCheckAsian = true
 
-        if (!binding.checkBoxPanasian.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxPanasian.text.toString())
+        if (binding.checkBoxPanasian.isChecked) {
+            categoryList.add(binding.checkBoxPanasian.text.toString())
             viewModel.showPanasian(binding.checkBoxPanasian.text.toString())
         } else --checkedCount
-            //viewModel.toggleCheckPanasian = true
-        if (!binding.checkBoxEastern.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxEastern.text.toString())
+            viewModel.toggleCheckPanasian = true
+
+        if (binding.checkBoxEastern.isChecked) {
+            categoryList.add(binding.checkBoxEastern.text.toString())
             viewModel.showEastern(binding.checkBoxEastern.text.toString())
         } else --checkedCount
-        //viewModel.toggleCheckEastern = true
-        if (!binding.checkBoxAmerican.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxAmerican.text.toString())
+        viewModel.toggleCheckEastern = true
+
+        if (binding.checkBoxAmerican.isChecked) {
+            categoryList.add(binding.checkBoxAmerican.text.toString())
             viewModel.showAmerican(binding.checkBoxAmerican.text.toString())
         } else --checkedCount
-            //viewModel.toggleCheckAmerican = true
-        if (!binding.checkBoxRussian.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxEuropean.text.toString())
+            viewModel.toggleCheckAmerican = true
+
+        if (binding.checkBoxRussian.isChecked) {
+            categoryList.add(binding.checkBoxRussian.text.toString())
             viewModel.showRussian(binding.checkBoxRussian.text.toString())
         } else --checkedCount
-        //viewModel.toggleCheckRussian = true
-        if (!binding.checkBoxMediterranean.isChecked) {
-            viewModel.filteredList.value?.add(binding.checkBoxEuropean.text.toString())
+        viewModel.toggleCheckRussian = true
+
+        if (binding.checkBoxMediterranean.isChecked) {
+            categoryList.add(binding.checkBoxMediterranean.text.toString())
             viewModel.showMediterranean(binding.checkBoxMediterranean.text.toString())
         } else --checkedCount
-        //viewModel.toggleCheckMediterranean = true
+        viewModel.toggleCheckMediterranean = true
 
         if (checkedCount == 0) {
             viewModel.clearFilter()
             viewModel.filterIsActive = false
             Toast.makeText(activity, "Ничего не выбрано", Toast.LENGTH_LONG)
                 .show()
-            //findNavController().navigateUp()
+            findNavController().navigateUp()
         } else {
-            viewModel.toFilterListFragment.observe(viewLifecycleOwner) {
+            viewModel.filteredList = categoryList
                 findNavController().navigate(
                     R.id.action_filterFragment_to_filterListFragment
                 )
-            }
+
         }
     }
 
