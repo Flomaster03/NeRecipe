@@ -55,45 +55,53 @@ class FilterFragment : Fragment() {
 
     fun onButtonApply(binding: FragmentFilterBinding) {
 
-        var checkedCount = 0
+        var checkedCount = 7
 
         viewModel.filteredList.value?.clear()
 
         if (!binding.checkBoxEuropean.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxEuropean.text.toString())
             viewModel.showEuropean(binding.checkBoxEuropean.text.toString())
-        } else viewModel.toggleCheckEuropean = true
+        } else --checkedCount
+
         if (!binding.checkBoxAsian.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxAsian.text.toString())
             viewModel.showAsian(binding.checkBoxAsian.text.toString())
-        } else viewModel.toggleCheckAsian = true
+        } else --checkedCount
+        //viewModel.toggleCheckAsian = true
+
         if (!binding.checkBoxPanasian.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxPanasian.text.toString())
             viewModel.showPanasian(binding.checkBoxPanasian.text.toString())
-        } else viewModel.toggleCheckPanasian = true
+        } else --checkedCount
+            //viewModel.toggleCheckPanasian = true
         if (!binding.checkBoxEastern.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxEastern.text.toString())
             viewModel.showEastern(binding.checkBoxEastern.text.toString())
-        } else viewModel.toggleCheckEastern = true
+        } else --checkedCount
+        //viewModel.toggleCheckEastern = true
         if (!binding.checkBoxAmerican.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxAmerican.text.toString())
             viewModel.showAmerican(binding.checkBoxAmerican.text.toString())
-        } else viewModel.toggleCheckAmerican = true
+        } else --checkedCount
+            //viewModel.toggleCheckAmerican = true
         if (!binding.checkBoxRussian.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxEuropean.text.toString())
             viewModel.showRussian(binding.checkBoxRussian.text.toString())
-        } else viewModel.toggleCheckRussian = true
+        } else --checkedCount
+        //viewModel.toggleCheckRussian = true
         if (!binding.checkBoxMediterranean.isChecked) {
-            checkedCount++
+            viewModel.filteredList.value?.add(binding.checkBoxEuropean.text.toString())
             viewModel.showMediterranean(binding.checkBoxMediterranean.text.toString())
-        } else viewModel.toggleCheckMediterranean = true
+        } else --checkedCount
+        //viewModel.toggleCheckMediterranean = true
 
         if (checkedCount == 0) {
             viewModel.clearFilter()
             viewModel.filterIsActive = false
             Toast.makeText(activity, "Ничего не выбрано", Toast.LENGTH_LONG)
                 .show()
-            findNavController().navigateUp()
+            //findNavController().navigateUp()
         } else {
             viewModel.toFilterListFragment.observe(viewLifecycleOwner) {
                 findNavController().navigate(
