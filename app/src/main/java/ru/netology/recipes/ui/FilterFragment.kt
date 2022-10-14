@@ -30,21 +30,13 @@ class FilterFragment : Fragment() {
             adapter.submitList(recipes)
         }
 
-
-        if (viewModel.toggleCheckEuropean)
-            binding.checkBoxEuropean.isChecked = false
-        if (viewModel.toggleCheckAsian)
-            binding.checkBoxAsian.isChecked = false
-        if (viewModel.toggleCheckPanasian)
-            binding.checkBoxPanasian.isChecked = false
-        if (viewModel.toggleCheckEastern)
-            binding.checkBoxEastern.isChecked = false
-        if (viewModel.toggleCheckAmerican)
-            binding.checkBoxAmerican.isChecked = false
-        if (viewModel.toggleCheckRussian)
-            binding.checkBoxRussian.isChecked = false
-        if (viewModel.toggleCheckMediterranean)
-            binding.checkBoxMediterranean.isChecked = false
+        binding.checkBoxEuropean.setText(binding.checkBoxEuropean.text.toString())
+        binding.checkBoxAsian.setText(binding.checkBoxAsian.text.toString())
+        binding.checkBoxPanasian.setText(binding.checkBoxPanasian.text.toString())
+        binding.checkBoxEastern.setText(binding.checkBoxEastern.text.toString())
+        binding.checkBoxAmerican.setText(binding.checkBoxAmerican.text.toString())
+        binding.checkBoxRussian.setText(binding.checkBoxRussian.text.toString())
+        binding.checkBoxMediterranean.setText(binding.checkBoxMediterranean.text.toString())
 
         binding.buttonApply.setOnClickListener {
             onButtonApply(binding)
@@ -61,57 +53,57 @@ class FilterFragment : Fragment() {
 
         if (binding.checkBoxEuropean.isChecked) {
             categoryList.add(binding.checkBoxEuropean.text.toString())
-            viewModel.showEuropean(binding.checkBoxEuropean.text.toString())
+            //viewModel.showEuropean(binding.checkBoxEuropean.text.toString())
         } else --checkedCount
-        viewModel.toggleCheckEuropean = true
+        //viewModel.toggleCheckEuropean = true
 
         if (binding.checkBoxAsian.isChecked) {
             categoryList.add(binding.checkBoxAsian.text.toString())
-            viewModel.showAsian(binding.checkBoxAsian.text.toString())
+            //viewModel.showAsian(binding.checkBoxAsian.text.toString())
         } else --checkedCount
-        viewModel.toggleCheckAsian = true
+        //viewModel.toggleCheckAsian = true
 
         if (binding.checkBoxPanasian.isChecked) {
             categoryList.add(binding.checkBoxPanasian.text.toString())
-            viewModel.showPanasian(binding.checkBoxPanasian.text.toString())
+            //viewModel.showPanasian(binding.checkBoxPanasian.text.toString())
         } else --checkedCount
-            viewModel.toggleCheckPanasian = true
+        //viewModel.toggleCheckPanasian = true
 
         if (binding.checkBoxEastern.isChecked) {
             categoryList.add(binding.checkBoxEastern.text.toString())
-            viewModel.showEastern(binding.checkBoxEastern.text.toString())
+           // viewModel.showEastern(binding.checkBoxEastern.text.toString())
         } else --checkedCount
-        viewModel.toggleCheckEastern = true
+        //viewModel.toggleCheckEastern = true
 
         if (binding.checkBoxAmerican.isChecked) {
             categoryList.add(binding.checkBoxAmerican.text.toString())
-            viewModel.showAmerican(binding.checkBoxAmerican.text.toString())
+          //  viewModel.showAmerican(binding.checkBoxAmerican.text.toString())
         } else --checkedCount
-            viewModel.toggleCheckAmerican = true
+        //viewModel.toggleCheckAmerican = true
 
         if (binding.checkBoxRussian.isChecked) {
             categoryList.add(binding.checkBoxRussian.text.toString())
-            viewModel.showRussian(binding.checkBoxRussian.text.toString())
+        //    viewModel.showRussian(binding.checkBoxRussian.text.toString())
         } else --checkedCount
-        viewModel.toggleCheckRussian = true
+        //viewModel.toggleCheckRussian = true
 
         if (binding.checkBoxMediterranean.isChecked) {
             categoryList.add(binding.checkBoxMediterranean.text.toString())
-            viewModel.showMediterranean(binding.checkBoxMediterranean.text.toString())
+        //    viewModel.showMediterranean(binding.checkBoxMediterranean.text.toString())
         } else --checkedCount
-        viewModel.toggleCheckMediterranean = true
+        //viewModel.toggleCheckMediterranean = true
 
         if (checkedCount == 0) {
-            viewModel.clearFilter()
-            viewModel.filterIsActive = false
+            //viewModel.clearFilter()
+            //viewModel.filterIsActive = false
             Toast.makeText(activity, "Ничего не выбрано", Toast.LENGTH_LONG)
                 .show()
             findNavController().navigateUp()
         } else {
             viewModel.filteredList = categoryList
-                findNavController().navigate(
-                    R.id.action_filterFragment_to_filterListFragment
-                )
+            findNavController().navigate(
+                R.id.action_filterFragment_to_filterListFragment
+            )
 
         }
     }

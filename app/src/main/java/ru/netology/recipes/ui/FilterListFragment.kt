@@ -48,7 +48,7 @@ class FilterListFragment : Fragment() {
             }
             if (showFilteredList.isNotEmpty()) {
                 adapter.submitList(showFilteredList)
-                findNavController().navigateUp()
+                //findNavController().navigateUp()
             } else {
                 Toast.makeText(activity, "Ничего не найдено", Toast.LENGTH_LONG)
                     .show()
