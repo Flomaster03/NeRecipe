@@ -24,4 +24,5 @@
     <string name="edit">Edit</string>
     <string name="search">Search</string>
     <string name="button_clear_filter">ClearFilter</string>
+    <string name="startFiltration">startFiltration</string>
 </resources>
