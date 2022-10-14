@@ -16,37 +16,30 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/single_recipe" />
 
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/emptyFilterImage"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/buttonToFilter"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/food"
-        android:visibility="gone"
+        android:backgroundTint="@color/purple_500"
+        android:clickable="true"
+        android:text="@string/return_to_filters"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToRecipes"
+        android:focusable="true" />
+
+    <Button
+        android:id="@+id/buttonToRecipes"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_500"
+        android:clickable="true"
+        android:text="@string/return_to_recipes"
+        android:layout_marginBottom="@dimen/icon_button_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id="@+id/emptyFilterText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_text_favourite"
-        android:textSize="24sp"
-        android:textColor="@color/purple_500"
-        app:layout_constraintEnd_toEndOf="@id/emptyFilterImage"
-        app:layout_constraintStart_toStartOf="@id/emptyFilterImage"
-        app:layout_constraintTop_toBottomOf="@id/emptyFilterImage" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/emptyFilterGroup"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:constraint_referenced_ids="emptyFilterImage, emptyFilterText"
-        tools:visibility="visible" />
-
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

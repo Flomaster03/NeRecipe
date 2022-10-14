@@ -35,12 +35,9 @@ class FilterListFragment : Fragment() {
 
         binding.listFilter.adapter = adapter
 
-        viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            adapter.submitList(recipes)
-        }
-
-        //binding.emptyFilterText.isInvisible
-       // binding.emptyFilterImage.isInvisible
+//      viewModel.data.observe(viewLifecycleOwner) { recipes ->
+//          adapter.submitList(recipes)
+//      }
 
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
             val showFilteredList = recipes.filter {
@@ -48,7 +45,6 @@ class FilterListFragment : Fragment() {
             }
             if (showFilteredList.isNotEmpty()) {
                 adapter.submitList(showFilteredList)
-                //findNavController().navigateUp()
             } else {
                 Toast.makeText(activity, "Ничего не найдено", Toast.LENGTH_LONG)
                     .show()
@@ -57,33 +53,19 @@ class FilterListFragment : Fragment() {
 
         }
 
-        //      fun find (resipes: List<Recipe>?, categories: MutableList<String>?): MutableList<Recipe>? {
-        //          val showFilteredList: MutableList<Recipe>? = null
-        //          if (categories != null) {
-        //              for (category in categories) {
-        //                  if (resipes != null) {
-        //                      for (recipe in resipes) {
-        //                          if (recipe.categoryRecipe == category) {
-        //                              showFilteredList?.add(recipe)
-        //                          }
-        //                      }
-        //                  }
-        //              }
-        //          }
-        //          return showFilteredList
-        //       }
+        binding.buttonToFilter.setOnClickListener {
+            viewModel.filteredList.clear()
+            findNavController().navigateUp()
+        }
 
-        //      viewModel.data.observe(viewLifecycleOwner) { recipes ->
-        //          val dataList = viewModel.data.value
-        //          val categoriesList = viewModel.filteredList.value
-        //          val showFilteredList = find(dataList, categoriesList)?.toList()
-        //          if (showFilteredList != null) {
-        //              adapter.submitList(showFilteredList)
-        //          } else {
-        //
-        //          }
-        //      }
-        viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
+        binding.buttonToRecipes.setOnClickListener {
+            viewModel.filteredList.clear()
+            findNavController().navigate(
+                R.id.action_filterListFragment_to_feedFragment
+            )
+        }
+
+         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
             val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
                 R.id.action_filterListFragment_to_updateFragment,

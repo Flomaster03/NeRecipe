@@ -26,4 +26,6 @@
     <string name="search">Поиск</string>
     <string name="button_clear_filter">Очистить фильтр</string>
     <string name="startFiltration">Отфильтровать</string>
+    <string name="return_to_filters">Вернуться к фильтрам</string>
+    <string name="return_to_recipes">Вернуться к списку рецептов</string>
 </resources>

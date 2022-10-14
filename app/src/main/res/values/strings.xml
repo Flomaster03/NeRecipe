@@ -25,4 +25,6 @@
     <string name="search">Search</string>
     <string name="button_clear_filter">ClearFilter</string>
     <string name="startFiltration">startFiltration</string>
+    <string name="return_to_filters">Go back to the filters</string>
+    <string name="return_to_recipes">Go back to the recipe list</string>
 </resources>

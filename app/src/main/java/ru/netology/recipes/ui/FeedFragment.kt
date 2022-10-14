@@ -3,7 +3,11 @@ package ru.netology.recipes.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,7 +40,13 @@ class FeedFragment : Fragment() {
             adapter.submitList(recipes)
         }
 
-
+        viewModel.data.observe(viewLifecycleOwner) {
+            if (viewModel.data.value.isNullOrEmpty()) {
+                binding.emptyFilterGroup.visibility = VISIBLE
+            } else {
+                binding.emptyFilterGroup.visibility = GONE
+            }
+        }
 
         binding.addRecipe.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_createFragment)
@@ -54,13 +64,14 @@ class FeedFragment : Fragment() {
             val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
                 R.id.action_feedFragment_to_updateFragment,
-                if (updatedRecipe != null) { Bundle().apply {
-                    idArgs = updatedRecipe.id
-                    titleArg = updatedRecipe.title
-                    authorNameArg = updatedRecipe.authorName
-                    categoryArg = updatedRecipe.categoryRecipe
-                    textArg = updatedRecipe.textRecipe
-                }
+                if (updatedRecipe != null) {
+                    Bundle().apply {
+                        idArgs = updatedRecipe.id
+                        titleArg = updatedRecipe.title
+                        authorNameArg = updatedRecipe.authorName
+                        categoryArg = updatedRecipe.categoryRecipe
+                        textArg = updatedRecipe.textRecipe
+                    }
                 } else return@observe
             )
         }
