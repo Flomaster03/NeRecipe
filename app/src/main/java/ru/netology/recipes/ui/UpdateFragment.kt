@@ -85,6 +85,7 @@ class UpdateFragment : Fragment() {
         var Bundle.authorNameArg: String? by StringArgs
         var Bundle.categoryArg: String? by StringArgs
         var Bundle.textArg: String? by StringArgs
+        var Bundle.searchTextArg: String? by StringArgs
     }
 }
 

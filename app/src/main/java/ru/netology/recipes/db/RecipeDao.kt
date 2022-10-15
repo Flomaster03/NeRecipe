@@ -36,8 +36,8 @@ interface RecipeDao {
     @Query("DELETE FROM recipes WHERE id = :id")
     fun removeById(id: Long)
 
-    @Query("SELECT * FROM recipes WHERE categoryRecipe = :categoryRecipe")
-    fun getEuropean(categoryRecipe: String): LiveData<List<RecipeEntity>>
+//    @Query("SELECT * FROM recipes WHERE categoryRecipe = :categoryRecipe")
+//    fun getEuropean(categoryRecipe: String): LiveData<List<RecipeEntity>>
 
     @Query("SELECT * FROM recipes WHERE title LIKE '%' || :text || '%'")
     fun searchByText(text: String): LiveData<List<RecipeEntity>>

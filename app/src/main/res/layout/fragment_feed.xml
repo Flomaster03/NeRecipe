@@ -24,6 +24,7 @@
         android:layout_marginEnd="@dimen/icon_button_size"
         android:layout_marginBottom="@dimen/icon_button_size"
         android:contentDescription="@string/button_add_recipe_description"
+        android:visibility="visible"
         app:backgroundTint="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

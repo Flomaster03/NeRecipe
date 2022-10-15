@@ -37,6 +37,7 @@
         android:text="@string/european_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintEnd_toEndOf="@id/buttonApply"
         app:layout_constraintStart_toStartOf="@id/buttonApply"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,6 +50,7 @@
         android:text="@string/asian_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintStart_toStartOf="@+id/checkBoxEuropean"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxEuropean" />
 
@@ -59,6 +61,7 @@
         android:text="@string/panasian_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintStart_toStartOf="@+id/checkBoxAsian"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxAsian" />
 
@@ -69,6 +72,7 @@
         android:text="@string/eastern_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintStart_toStartOf="@+id/checkBoxPanasian"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxPanasian" />
 
@@ -79,6 +83,7 @@
         android:text="@string/american_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintStart_toStartOf="@+id/checkBoxEastern"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxEastern" />
 
@@ -89,6 +94,7 @@
         android:text="@string/russian_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintStart_toStartOf="@+id/checkBoxAmerican"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxAmerican" />
 
@@ -99,6 +105,7 @@
         android:text="@string/mediterranean_type"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:checked="true"
         app:layout_constraintStart_toStartOf="@+id/checkBoxRussian"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxRussian" />
 

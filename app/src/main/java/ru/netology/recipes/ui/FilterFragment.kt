@@ -93,6 +93,8 @@ class FilterFragment : Fragment() {
         } else --checkedCount
         //viewModel.toggleCheckMediterranean = true
 
+
+        
         if (checkedCount == 0) {
             //viewModel.clearFilter()
             //viewModel.filterIsActive = false

@@ -9,6 +9,7 @@ import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentFilterListBinding
@@ -35,8 +36,13 @@ class FilterListFragment : Fragment() {
 
         binding.listFilter.adapter = adapter
 
-//      viewModel.data.observe(viewLifecycleOwner) { recipes ->
-//          adapter.submitList(recipes)
+        if (viewModel.data.value.isNullOrEmpty()) { findNavController().navigateUp() }
+
+//      { Snackbar.make(binding.root, "Список рецептов пуст!", Snackbar.LENGTH_INDEFINITE)
+//              .setAction("Return to the Recipes") {
+//                  findNavController().navigateUp()
+//              }
+//              .show()
 //      }
 
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
@@ -65,7 +71,7 @@ class FilterListFragment : Fragment() {
             )
         }
 
-         viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
+        viewModel.toUpdateFragment.observe(viewLifecycleOwner) {
             val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
                 R.id.action_filterListFragment_to_updateFragment,
@@ -90,3 +96,5 @@ class FilterListFragment : Fragment() {
         return binding.root
     }
 }
+
+

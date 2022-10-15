@@ -15,13 +15,13 @@ interface RecipeRepository {
     fun getData()
 
 
-    fun showEuropean(type: String)
-    fun showAsian(type: String)
-    fun showPanasian(type: String)
-    fun showEastern(type: String)
-    fun showAmerican(type: String)
-    fun showRussian(type: String)
-    fun showMediterranean(type: String)
+//   fun showEuropean(type: String)
+//   fun showAsian(type: String)
+//   fun showPanasian(type: String)
+//   fun showEastern(type: String)
+//   fun showAmerican(type: String)
+//   fun showRussian(type: String)
+//   fun showMediterranean(type: String)
 
     companion object{
         const val NEW_ID = 0L
