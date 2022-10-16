@@ -76,6 +76,31 @@ class UpdateFragment : Fragment() {
             }
             findNavController().navigateUp()
         }
+        
+        // при этом варианте рецепт просто не обновляется вместе с категорией. Никакого toast не появляется.
+        
+        /*
+         binding.title.requestFocus()
+        binding.buttonSave.setOnClickListener {
+            if (binding.title.text.isNullOrBlank()
+                || binding.authorName.text.isNullOrBlank()
+                || categoryRecipe.isNullOrBlank()
+                || binding.textRecipe.text.isNullOrBlank()
+            ) {
+                Toast.makeText(activity, "Все поля должны быть заполнены", Toast.LENGTH_LONG)
+                    .show()
+
+            } else {
+                viewModel.updateContent(
+                    id = arguments?.idArgs!!,
+                    title = binding.title.text.toString(),
+                    authorName = binding.authorName.text.toString(),
+                    categoryRecipe = categoryRecipeNumber,
+                    textRecipe = binding.textRecipe.text.toString()
+                )
+            }
+            findNavController().navigateUp()
+        } */
         return binding.root
     }
 
