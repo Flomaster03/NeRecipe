@@ -58,10 +58,10 @@ class UpdateFragment : Fragment() {
 
         binding.title.requestFocus()
         binding.buttonSave.setOnClickListener {
-            if (binding.title.text.isNullOrBlank()
-                || binding.authorName.text.isNullOrBlank()
-                || categoryRecipe.isBlank()
-                || binding.textRecipe.text.isNullOrBlank()
+            if (!binding.title.text.isNullOrBlank()
+                || !binding.authorName.text.isNullOrBlank()
+                || !categoryRecipe.isBlank()
+                || !binding.textRecipe.text.isNullOrBlank()
             ) {
                 viewModel.updateContent(
                     id = arguments?.idArgs!!,
