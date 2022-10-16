@@ -17,12 +17,10 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
         RecipeRepositoryImpl(dao = AppDb.getInstance(context = application).recipeDao)
 
     val data by repository::data
-    var filterIsActive = false
     val toFavoriteFragment = SingleLiveEvent<String>()
     val toUpdateFragment = SingleLiveEvent<String?>()
     val toSingleFragment = SingleLiveEvent<Long>()
     val toFilterFragment = SingleLiveEvent<Unit>()
-    val toFilterListFragment = SingleLiveEvent<Unit>()
     val updateRecipe = MutableLiveData<Recipe>(null)
     private val currentRecipe = MutableLiveData<Recipe?>(null)
     var filteredList = mutableListOf<String>()
@@ -69,10 +67,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
         repository.searchText(text)
     }
 
- //   override fun onCreateClicked() {
- //       toCreateFragment.call()
- //   }
-
 
     override fun onSaveButtonClicked(
         title: String,
@@ -107,58 +101,4 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application),
         toSingleFragment.value = recipe.id
 
     }
-
-//    var toggleCheckEuropean = true
-//    var toggleCheckAsian = true
-//    var toggleCheckPanasian = true
-//    var toggleCheckEastern = true
-//    var toggleCheckAmerican = true
-//    var toggleCheckRussian = true
-//    var toggleCheckMediterranean = true
-//
-//    fun showEuropean(categoryRecipe: String) {
-//        repository.showEuropean(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckEuropean = false
-//    }
-//
-//    fun showAsian(categoryRecipe: String) {
-//        repository.showAsian(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckAsian = false
-//    }
-//
-//    fun showPanasian(categoryRecipe: String) {
-//        repository.showPanasian(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckPanasian = false
-//    }
-//
-//    fun showEastern(categoryRecipe: String) {
-//        repository.showEastern(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckEastern = false
-//    }
-//
-//    fun showAmerican(categoryRecipe: String) {
-//        repository.showAmerican(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckAmerican = false
-//    }
-//
-//    fun showRussian(categoryRecipe: String) {
-//        repository.showRussian(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckRussian = false
-//    }
-//
-//    fun showMediterranean(categoryRecipe: String) {
-//        repository.showMediterranean(categoryRecipe)
-//        filterIsActive = true
-//        toggleCheckMediterranean = false
-//    }
-
-
-
-
 }

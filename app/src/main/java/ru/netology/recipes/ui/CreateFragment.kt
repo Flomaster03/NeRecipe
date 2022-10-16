@@ -28,13 +28,19 @@ class CreateFragment : Fragment() {
 
         binding.categoryRecipeCheckBox.setOnCheckedChangeListener { _, i ->
             when (i) {
-                R.id.checkBoxEuropean -> categoryRecipeNumber = binding.checkBoxEuropean.text.toString()
+                R.id.checkBoxEuropean -> categoryRecipeNumber =
+                    binding.checkBoxEuropean.text.toString()
                 R.id.checkBoxAsian -> categoryRecipeNumber = binding.checkBoxAsian.text.toString()
-                R.id.checkBoxPanasian -> categoryRecipeNumber = binding.checkBoxPanasian.text.toString()
-                R.id.checkBoxEastern -> categoryRecipeNumber = binding.checkBoxEastern.text.toString()
-                R.id.checkBoxAmerican -> categoryRecipeNumber = binding.checkBoxAmerican.text.toString()
-                R.id.checkBoxRussian -> categoryRecipeNumber = binding.checkBoxRussian.text.toString()
-                R.id.checkBoxMediterranean -> categoryRecipeNumber = binding.checkBoxMediterranean.text.toString()
+                R.id.checkBoxPanasian -> categoryRecipeNumber =
+                    binding.checkBoxPanasian.text.toString()
+                R.id.checkBoxEastern -> categoryRecipeNumber =
+                    binding.checkBoxEastern.text.toString()
+                R.id.checkBoxAmerican -> categoryRecipeNumber =
+                    binding.checkBoxAmerican.text.toString()
+                R.id.checkBoxRussian -> categoryRecipeNumber =
+                    binding.checkBoxRussian.text.toString()
+                R.id.checkBoxMediterranean -> categoryRecipeNumber =
+                    binding.checkBoxMediterranean.text.toString()
             }
         }
 

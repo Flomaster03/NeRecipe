@@ -6,8 +6,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,7 +15,6 @@ import ru.netology.recipes.databinding.FragmentFeedBinding
 import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.idArgs
-import ru.netology.recipes.ui.UpdateFragment.Companion.searchTextArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.textArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.titleArg
 import ru.netology.recipes.viewModel.RecipeViewModel
@@ -93,24 +90,11 @@ class FeedFragment : Fragment() {
         }
 
 
-        binding.searchView.setOnSearchClickListener {
-            binding.addRecipe.visibility = GONE
-
- //           val searchText = binding.searchView.text
-//           if (searchText != null) {
-//               Bundle().apply {
-//                   searchTextArg = searchText
-//              }
-//          }
-//          findNavController().navigate(
-//              R.id.action_feedFragment_to_searchFragment
-//          )
+        binding.searchView.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_feedFragment_to_searchFragment
+            )
         }
-
-
-
-
-
         return binding.root
     }
 }

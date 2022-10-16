@@ -22,7 +22,7 @@
     <string name="empty_text_favourite">There is nothing here yet!</string>
     <string name="remove">Remove</string>
     <string name="edit">Edit</string>
-    <string name="search">Search</string>
+    <string name="search">Сlick to search</string>
     <string name="button_clear_filter">ClearFilter</string>
     <string name="startFiltration">startFiltration</string>
     <string name="return_to_filters">Go back to the filters</string>

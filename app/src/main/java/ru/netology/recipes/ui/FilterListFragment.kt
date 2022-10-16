@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.databinding.FragmentFilterListBinding
-import ru.netology.recipes.dto.Recipe
 import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.idArgs
@@ -36,7 +33,9 @@ class FilterListFragment : Fragment() {
 
         binding.listFilter.adapter = adapter
 
-        if (viewModel.data.value.isNullOrEmpty()) { findNavController().navigateUp() }
+        if (viewModel.data.value.isNullOrEmpty()) {
+            findNavController().navigateUp()
+        }
 
 //      { Snackbar.make(binding.root, "Список рецептов пуст!", Snackbar.LENGTH_INDEFINITE)
 //              .setAction("Return to the Recipes") {

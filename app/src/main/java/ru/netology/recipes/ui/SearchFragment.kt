@@ -1,16 +1,16 @@
 package ru.netology.recipes.ui
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
-import ru.netology.recipes.databinding.FragmentFilterListBinding
 import ru.netology.recipes.databinding.FragmentSearchBinding
 import ru.netology.recipes.ui.UpdateFragment.Companion.authorNameArg
 import ru.netology.recipes.ui.UpdateFragment.Companion.categoryArg
@@ -35,27 +35,33 @@ class SearchFragment : Fragment() {
         binding.listFilter.adapter = adapter
 
 
-        if (viewModel.data.value.isNullOrEmpty()) {
-            findNavController().navigateUp()
-        }
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
-
-        viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            val showFilteredList = recipes.filter {
-                viewModel.filteredList.contains(it.categoryRecipe)
-            }
-            if (showFilteredList.isNotEmpty()) {
-                adapter.submitList(showFilteredList)
-            } else {
-                Toast.makeText(activity, "Ничего не найдено", Toast.LENGTH_LONG)
-                    .show()
-                findNavController().navigateUp()
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
 
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                if (newText.isNotBlank()) {
+                    viewModel.onSearchClicked(newText)
+                    viewModel.data.observe(viewLifecycleOwner) { recipe ->
+                        adapter.submitList(recipe)
+                    }
+                }
+                if (TextUtils.isEmpty(newText)) {
+                    viewModel.data.observe(viewLifecycleOwner) { recipe ->
+                        adapter.submitList(recipe)
+                    }
+                }
+                return false
+            }
         }
+        )
 
         binding.buttonToRecipes.setOnClickListener {
-            viewModel.filteredList.clear()
+            viewModel.clearFilter()
             findNavController().navigateUp()
         }
 
@@ -83,5 +89,4 @@ class SearchFragment : Fragment() {
         }
         return binding.root
     }
-
 }

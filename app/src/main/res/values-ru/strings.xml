@@ -23,7 +23,7 @@
     <string name="empty_text_favourite">Здесь пока ничего нет!</string>
     <string name="remove">Удалить</string>
     <string name="edit">Редактировать</string>
-    <string name="search">Поиск</string>
+    <string name="search">Нажмите для поиска</string>
     <string name="button_clear_filter">Очистить фильтр</string>
     <string name="startFiltration">Отфильтровать</string>
     <string name="return_to_filters">Вернуться к фильтрам</string>

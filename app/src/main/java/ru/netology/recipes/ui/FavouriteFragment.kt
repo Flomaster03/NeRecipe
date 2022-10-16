@@ -50,13 +50,14 @@ class FavouriteFragment : Fragment() {
             val updatedRecipe = viewModel.updateRecipe.value
             findNavController().navigate(
                 R.id.action_favouriteFragment_to_updateFragment,
-                if (updatedRecipe != null) { Bundle().apply {
-                    idArgs = updatedRecipe.id
-                    titleArg = updatedRecipe.title
-                    authorNameArg = updatedRecipe.authorName
-                    categoryArg = updatedRecipe.categoryRecipe
-                    textArg = updatedRecipe.textRecipe
-                }
+                if (updatedRecipe != null) {
+                    Bundle().apply {
+                        idArgs = updatedRecipe.id
+                        titleArg = updatedRecipe.title
+                        authorNameArg = updatedRecipe.authorName
+                        categoryArg = updatedRecipe.categoryRecipe
+                        textArg = updatedRecipe.textRecipe
+                    }
                 } else return@observe
             )
         }
