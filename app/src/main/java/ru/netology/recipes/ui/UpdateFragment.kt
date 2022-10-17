@@ -112,6 +112,7 @@ class UpdateFragment : Fragment() {
         } */
         return binding.root
     }
+   
 
     companion object {
         var Bundle.idArgs: Long by LongArgs
