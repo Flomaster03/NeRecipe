@@ -48,7 +48,6 @@ class UpdateFragment : Fragment() {
         }
         val title = arguments?.titleArg
         val authorName = arguments?.authorNameArg
-        val categoryRecipe = categoryRecipeNumber
         val textRecipe = arguments?.textArg
 
 
@@ -56,44 +55,12 @@ class UpdateFragment : Fragment() {
         authorName?.let { binding.authorName.setText(it) }
         textRecipe?.let { binding.textRecipe.setText(it) }
 
-        // Когда я нажимаю на кнопку редактирования, открывается рецепт. Если при этом не выбирать ни какую категорию или убрать полностью 
-        // заголовок или название, то отражается тот рецепт, который был. Если отредактировать название или автора, но по прежнему не выбрать категорию, то
-        // при этом варианте рецепт опять просто не обновляется вместе с категорией. Никакого toast не появляется. 
-        // Хотя по идее, проверка при незаполненной категории должна приводить к появлению toast. Если просто отредактировать рецепт, то он тоже не изменяется. 
-        // В чем проблема, я понять не могу. Та же логика в CreateFragment работает. Здесь, насколько я понимаю, данные для заполнения мы берем из bundle. 
-        // Если они прошли проверку, то заполняется рецепт и выводится, если не прошли, выводится toast. Здесь же получается, что нет. 
-        // При дебаггинге я дохожу до проверки и все заканчивается. Почему, я не могу понять.
-        binding.title.requestFocus()
-        binding.buttonSave.setOnClickListener {
-            if (!binding.title.text.isNullOrBlank()
-                && !binding.authorName.text.isNullOrBlank()
-                && !categoryRecipe.isNullOrBlank()
-                && !binding.textRecipe.text.isNullOrBlank()
-            ) {
-                viewModel.updateContent(
-                id = arguments?.idArgs!!,
-                title = binding.title.text.toString(),
-                authorName = binding.authorName.text.toString(),
-                categoryRecipe = categoryRecipeNumber,
-                textRecipe = binding.textRecipe.text.toString()
-                )
 
-            } else {
-                Toast.makeText(activity, "Все поля должны быть заполнены", Toast.LENGTH_LONG)
-                    .show()
-
-            }
-            findNavController().navigateUp()
-        }
-        
-        //и при этом варианте рецепт просто не обновляется вместе с категорией. Никакого toast не появляется.
-        
-        /*
          binding.title.requestFocus()
         binding.buttonSave.setOnClickListener {
             if (binding.title.text.isNullOrBlank()
                 || binding.authorName.text.isNullOrBlank()
-                || categoryRecipe.isNullOrBlank()
+                || categoryRecipeNumber.isBlank()
                 || binding.textRecipe.text.isNullOrBlank()
             ) {
                 Toast.makeText(activity, "Все поля должны быть заполнены", Toast.LENGTH_LONG)
@@ -107,9 +74,10 @@ class UpdateFragment : Fragment() {
                     categoryRecipe = categoryRecipeNumber,
                     textRecipe = binding.textRecipe.text.toString()
                 )
+                findNavController().navigateUp()
             }
-            findNavController().navigateUp()
-        } */
+
+        }
         return binding.root
     }
    
@@ -120,7 +88,7 @@ class UpdateFragment : Fragment() {
         var Bundle.authorNameArg: String? by StringArgs
         var Bundle.categoryArg: String? by StringArgs
         var Bundle.textArg: String? by StringArgs
-        var Bundle.searchTextArg: String? by StringArgs
+
     }
 }
 
