@@ -14,6 +14,11 @@ import ru.netology.recipes.R
 import ru.netology.recipes.databinding.FragmentUpdateBinding
 import ru.netology.recipes.viewModel.RecipeViewModel
 
+
+
+// Я поразмышлял и исправил код, теперь все работает. А ответ на вопрос по FilterListFragment найти не могу.
+
+
 class UpdateFragment : Fragment() {
 
     private var categoryRecipeNumber = ""
